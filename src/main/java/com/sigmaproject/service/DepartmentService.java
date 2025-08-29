@@ -25,10 +25,11 @@ public class DepartmentService {
                                                             List<String> errorLines
     ) {
         Map<String, Department> departments = new HashMap<>();
+
         for (Manager m : allManagersById.values()) {
             departments.putIfAbsent(m.getDepartment(), new Department(m.getDepartment(), m));
             Department dept = departments.get(m.getDepartment());
-            if (dept.getManager() != null) {
+            if (dept.getManager() != m) {
                 errorLines.add(String.format(DUPLICATE_MANAGER_MESSAGE_TEMPLATE,
                         DUPLICATE_MANAGER_ERR,
                         m.getDepartment(),

@@ -103,12 +103,17 @@ public class FileService {
     ) {
         for (String lineRaw : lines) {
             String line = lineRaw.trim();
-            if (line.isEmpty()) continue;
+
+            if (line.isEmpty()) {
+                continue;
+            }
+
             String[] parts = line.split(CSV_DELIMITER, -1);
             if (parts.length != 5) {
                 errorLines.add(lineRaw);
                 continue;
             }
+
             String position = parts[0].trim();
             String id = parts[1].trim();
             String name = parts[2].trim();
@@ -117,15 +122,14 @@ public class FileService {
 
             if (!isValidSalary(salaryStr)) {
                 errorLines.add(lineRaw);
-                return;
-            }
-
-            if (MANAGER.equalsIgnoreCase(position)) {
-                EmployeeService.createManager(id, name, salaryStr, last, allManagersById, errorLines, lineRaw);
-            } else if (EMPLOYEE.equalsIgnoreCase(position)) {
-                EmployeeService.createEmployee(id, name, salaryStr, allEmployeesById, errorLines, last);
             } else {
-                errorLines.add(lineRaw);
+                if (MANAGER.equalsIgnoreCase(position)) {
+                    EmployeeService.createManager(id, name, salaryStr, last, allManagersById, errorLines, lineRaw);
+                } else if (EMPLOYEE.equalsIgnoreCase(position)) {
+                    EmployeeService.createEmployee(id, name, salaryStr, allEmployeesById, errorLines, last);
+                } else {
+                    errorLines.add(lineRaw);
+                }
             }
         }
     }

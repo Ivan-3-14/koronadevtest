@@ -31,7 +31,6 @@ public class Employee extends Person {
         this.managerId = managerId;
     }
 
-
     @Override
     public String toString() {
         return "Employee," + super.toString() + "," + managerId;

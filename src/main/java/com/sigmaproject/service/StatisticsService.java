@@ -32,6 +32,7 @@ public class StatisticsService {
 
         List<String> statsLines = new ArrayList<>();
         statsLines.add(STAT_HEAD_LINE);
+
         for (Department d : sortedDepartments) {
             List<Double> salaries = d.getEmployees().stream()
                     .map(Employee::getSalary)

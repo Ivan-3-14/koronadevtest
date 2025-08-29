@@ -2,6 +2,8 @@ package com.sigmaproject.model;
 
 import lombok.Data;
 
+import java.text.DecimalFormat;
+
 
 /**
  * Abstract class representing a person.
@@ -48,8 +50,28 @@ public abstract class Person {
         this.salary = salary;
     }
 
+    /**
+     * Formats a {@code double} value by removing trailing zeros after the decimal point
+     * if the value is an integer. If the value has a fractional part, it will be displayed
+     * with a maximum of two decimal places.
+     *
+     * @param value the {@code double} value to be formatted
+     * @return a string representation of the formatted value
+     *         without unnecessary zeros after the decimal point
+     */
+    private String formatDouble(double value) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        String result = df.format(value);
+
+        if (result.endsWith(".00")) {
+            result = result.substring(0, result.length() - 3);
+        }
+
+        return result;
+    }
+
     @Override
     public String toString() {
-        return id + "," + name + "," + salary ;
+        return id + "," + name + "," + formatDouble(salary != null ? salary : 0.0) ;
     }
 }

@@ -22,13 +22,13 @@ public class EmployeeService {
     /**
      * Creates a manager and adds it to the manager map.
      *
-     * @param id manager's ID
-     * @param name manager's name
-     * @param salaryStr manager's salary as string
-     * @param last manager's last name
+     * @param id              manager's ID
+     * @param name            manager's name
+     * @param salaryStr       manager's salary as string
+     * @param last            manager's last name
      * @param allManagersById map to store managers
-     * @param errorLines list to collect error messages
-     * @param lineRaw raw line from the file
+     * @param errorLines      list to collect error messages
+     * @param lineRaw         raw line from the file
      */
     public static void createManager(String id,
                                      String name,
@@ -50,12 +50,12 @@ public class EmployeeService {
     /**
      * Creates an employee and adds it to the employee map.
      *
-     * @param id employee's ID
-     * @param name employee's name
-     * @param salaryStr employee's salary as string
+     * @param id               employee's ID
+     * @param name             employee's name
+     * @param salaryStr        employee's salary as string
      * @param allEmployeesById map to store employees
-     * @param errorLines list to collect error messages
-     * @param last raw line from the file
+     * @param errorLines       list to collect error messages
+     * @param last             raw line from the file
      */
     public static void createEmployee(String id,
                                       String name,
@@ -77,9 +77,9 @@ public class EmployeeService {
      * Distributes employees to their respective departments.
      *
      * @param allEmployeesById map of all employees
-     * @param allManagersById map of all managers
-     * @param departments map of departments
-     * @param errorLines list to collect error messages
+     * @param allManagersById  map of all managers
+     * @param departments      map of departments
+     * @param errorLines       list to collect error messages
      */
     public static void distributeEmployees(Map<String, Employee> allEmployeesById,
                                            Map<String, Manager> allManagersById,
@@ -107,7 +107,7 @@ public class EmployeeService {
      * Sorts employees in departments based on specified criteria.
      *
      * @param departments map of departments
-     * @param params command line parameters
+     * @param params      command line parameters
      */
     public static void sortEmployees(Map<String, Department> departments, CommandLineArgsService params) {
         if (params.getSortBy() != null) {
