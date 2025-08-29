@@ -1,7 +1,9 @@
 package com.sigmaproject.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 @Builder
 @Data
+@AllArgsConstructor
 public class Department {
 
     /**

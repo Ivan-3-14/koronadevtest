@@ -1,8 +1,6 @@
 package com.sigmaproject.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 /**
@@ -50,4 +48,8 @@ public abstract class Person {
         this.salary = salary;
     }
 
+    @Override
+    public String toString() {
+        return id + "," + name + "," + salary ;
+    }
 }

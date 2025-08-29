@@ -17,7 +17,38 @@ public class Constant {
      * for troubleshooting and debugging purposes.
      * </p>
      */
-    private static final String ERROR_LOG = "error.log";
+    public static final String ERROR_LOG = "error.log";
+
+    /**
+     * The string representation for the "Manager" model.
+     */
+    public static final String MANAGER = "Manager";
+
+    /**
+     * The string representation for the "Employee" model.
+     */
+    public static final String EMPLOYEE = "Employee";
+
+    /**
+     * The file extension for serialized binary files.
+     */
+    public static final String POINT_S_B = ".sb";
+
+    /**
+     * The pattern for matching files with the .sb extension.
+     */
+    public static final String FILE_EXTENSION_PATTERN = "*.sb";
+
+    /**
+     * The delimiter used in CSV (Comma-Separated Values) files.
+     */
+    public static final String CSV_DELIMITER = ",";
+
+    /**
+     * A formatted string used for representing a key-value pair
+     * in the format of "'key' : value".
+     */
+    public static final String QUOTE_SPACE_COLON_SPACE = "' : ";
 
     /**
      * The string representation of true.
@@ -75,6 +106,26 @@ public class Constant {
     public static final Character EQUALS = '=';
 
     /**
+     * The header line format for the statistics output.
+     */
+    public static final String STAT_HEAD_LINE = "department, min, max, mid";
+
+    /**
+     * Default value for salary represented as a string.
+     */
+    public static final String DEFAULT_SALARY_VAL_STR = "0.00";
+
+    /**
+     * String format for a line in the statistics output.
+     */
+    public static final String STAT_LINE_STRING_FORMAT = "%s, %s, %s, %s";
+
+    /**
+     * Template for a message indicating a duplicate manager.
+     */
+    public static final String DUPLICATE_MANAGER_MESSAGE_TEMPLATE = "%s%s%s%s";
+
+    /**
      * Error message for statistics options without the --stat argument.
      */
     public static final String STAT_ERROR_MESSAGE = "Statistics options (--output, --path) cannot be specified without the --stat argument";
@@ -103,6 +154,41 @@ public class Constant {
      * Error message for incorrect order parameter values.
      */
     public static final String INCORRECT_ORDER_PARAM = "Incorrect value for --order parameter: ";
+
+    /**
+     * Error message for indicating a duplicate manager for a department.
+     */
+    public static final String DUPLICATE_MANAGER_ERR = "Duplicate manager for department '";
+
+    /**
+     * Error message for file write operations.
+     */
+    public static final String FILE_WRITE_ERR = "File write error ";
+
+    /**
+     * Error message when there is an issue writing to the error log file.
+     */
+    public static final String ERR_WRITING_ERR_LOG = "Error writing error.log: ";
+
+    /**
+     * Error message for errors encountered while reading input files.
+     */
+    public static final String ERR_READ_INPUT_FILES = "Error reading input files: ";
+
+    /**
+     * Error message for issues encountered while recording statistics.
+     */
+    public static final String ERR_REC_STATS = "Error recording statistics: ";
+
+    /**
+     * Error message for issues encountered while creating a directory.
+     */
+    public static final String ERR_CREATE_DIR = "Error creating directory: ";
+
+    /**
+     * A message prompting the user to restart the program.
+     */
+    public static final String FINAL_MESSAGE = "Please, restart the program";
 
     /**
      * Private constructor to prevent instantiation of the utility class.

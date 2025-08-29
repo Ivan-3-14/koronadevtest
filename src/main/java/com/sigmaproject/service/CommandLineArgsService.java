@@ -1,5 +1,6 @@
 package com.sigmaproject.service;
 
+import com.sigmaproject.exception.CustomIllArgException;
 import com.sigmaproject.model.enums.OrderValue;
 import com.sigmaproject.model.enums.OutputValue;
 import com.sigmaproject.model.enums.SortValue;
@@ -20,9 +21,10 @@ import static com.sigmaproject.utils.Constant.*;
 
 @Getter
 public class CommandLineArgsService {
+
+    private boolean stat = false;
     private String sortBy = null;
     private String order = null;
-    private boolean stat = false;
     private String output = null;
     private String path = null;
 
@@ -30,9 +32,9 @@ public class CommandLineArgsService {
      * Constructs a CommandLineArgsService with the provided command-line arguments.
      *
      * @param args the command-line arguments to parse
-     * @throws IllegalArgumentException if the arguments are invalid
+     * @throws CustomIllArgException if the arguments are invalid
      */
-    public CommandLineArgsService(String[] args) throws IllegalArgumentException {
+    public CommandLineArgsService(String[] args) throws CustomIllArgException {
         parseArgs(args);
         validate();
     }
@@ -97,7 +99,7 @@ public class CommandLineArgsService {
     /**
      * Validates the parsed command-line arguments for correctness.
      *
-     * @throws IllegalArgumentException if any of the arguments are invalid
+     * @throws CustomIllArgException if any of the arguments are invalid
      */
     private void validate() {
         validateSort();
@@ -107,25 +109,25 @@ public class CommandLineArgsService {
     /**
      * Validates the statistics settings.
      *
-     * @throws IllegalArgumentException if the statistics settings are invalid
+     * @throws CustomIllArgException if the statistics settings are invalid
      */
     private void validateStatistic() {
         if (!stat) {
             if (output != null && !output.equals(OutputValue.CONSOLE.getValue())) {
-                throw new IllegalArgumentException(STAT_ERROR_MESSAGE);
+                throw new CustomIllArgException(STAT_ERROR_MESSAGE);
             }
             if (path != null) {
-                throw new IllegalArgumentException(STAT_ERROR_MESSAGE);
+                throw new CustomIllArgException(STAT_ERROR_MESSAGE);
             }
         } else {
             if (output == null) {
                 output = OutputValue.CONSOLE.getValue();
             }
             if (output.equals(OutputValue.FILE.getValue()) && (path == null || path.isEmpty())) {
-                throw new IllegalArgumentException(OUTPUT_ERROR_MESSAGE_PATH);
+                throw new CustomIllArgException(OUTPUT_ERROR_MESSAGE_PATH);
             }
             if (!output.equals(OutputValue.FILE.getValue()) && !output.equals(OutputValue.CONSOLE.getValue())) {
-                throw new IllegalArgumentException(OUTPUT_ERROR_MESSAGE + output);
+                throw new CustomIllArgException(OUTPUT_ERROR_MESSAGE + output);
             }
         }
     }
@@ -133,17 +135,17 @@ public class CommandLineArgsService {
     /**
      * Validates the sorting parameters.
      *
-     * @throws IllegalArgumentException if the sorting parameters are invalid
+     * @throws CustomIllArgException if the sorting parameters are invalid
      */
     private void validateSort() {
         if (sortBy == null && order != null) {
-            throw new IllegalArgumentException(SORT_ERROR_MESSAGE);
+            throw new CustomIllArgException(SORT_ERROR_MESSAGE);
         }
         if (sortBy != null && !sortBy.equals(SortValue.NAME.getValue()) && !sortBy.equals(SortValue.SALARY.getValue())) {
-            throw new IllegalArgumentException(INCORRECT_SORT_PARAM + sortBy);
+            throw new CustomIllArgException(INCORRECT_SORT_PARAM + sortBy);
         }
         if (order != null && !order.equals(OrderValue.ASC.getValue()) && !order.equals(OrderValue.DESC.getValue())) {
-            throw new IllegalArgumentException(INCORRECT_ORDER_PARAM + order);
+            throw new CustomIllArgException(INCORRECT_ORDER_PARAM + order);
         }
     }
 }

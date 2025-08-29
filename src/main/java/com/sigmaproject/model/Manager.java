@@ -26,8 +26,13 @@ public class Manager extends Person {
      * @param salary     the salary of the manager
      * @param department the department that the manager oversees
      */
-    Manager(String id, String name, Double salary, String department) {
+    public Manager(String id, String name, Double salary, String department) {
         super(id, name, salary);
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager," + super.toString();
     }
 }
